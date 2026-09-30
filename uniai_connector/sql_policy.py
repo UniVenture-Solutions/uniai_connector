@@ -6,7 +6,8 @@ from sqlglot import exp
 FUNCTIONS = {'AND','OR','CASE','ABS','AVG','CAST','CEIL','CEILING','COALESCE','CONCAT','CONCAT_WS',
  'COUNT','CURDATE','CURRENT_DATE','DATE','DATEDIFF','DATE_ADD','DATE_SUB','DAY',
  'EXTRACT','FLOOR','IF','IFNULL','LOWER','MAX','MIN','MONTH','NULLIF','ROUND',
- 'SUM','TRIM','UPPER','YEAR','DATE_FORMAT','TIMESTAMPDIFF','CURRENT_TIMESTAMP'}
+ 'SUM','TRIM','UPPER','YEAR','DATE_FORMAT','TIMESTAMPDIFF','CURRENT_TIMESTAMP',
+ 'TS_OR_DS_TO_DATE'}
 
 
 def validate_sql(sql, database):
@@ -49,4 +50,3 @@ def verify_grants(grants, database):
         found = True
     if not found:
         raise ValueError('SELECT grant missing')
-
