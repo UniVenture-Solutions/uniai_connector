@@ -10,6 +10,9 @@ class SQLPolicyTests(unittest.TestCase):
         self.assertIn('AND',sql)
     def test_small_limit_preserved(self):
         self.assertIn('LIMIT 5',validate_sql('SELECT name FROM `tabCustomer` LIMIT 5','erp'))
+    def test_date_filter_supported_after_sqlglot_normalization(self):
+        sql=validate_sql('SELECT name FROM `tabSales Invoice` WHERE DATE(posting_date)=CURDATE()','erp')
+        self.assertIn('DATE(posting_date)',sql)
     def test_rejects_unsafe_queries(self):
         for sql in ['DELETE FROM x','SELECT 1; SELECT 2',"SELECT * FROM mysql.user",
                     "SELECT LOAD_FILE('/etc/passwd')",'SELECT SLEEP(5)',
